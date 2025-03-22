@@ -1,13 +1,16 @@
 
-import React, { useState } from 'react';
-import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { MessageSquare, X, Send, Sparkles, Loader2 } from 'lucide-react';
 import Button from '../shared/Button';
+import { useToast } from "@/hooks/use-toast";
 
 const ChatbotButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState('');
+  const [isAiThinking, setIsAiThinking] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
   
-  // In a real app, these would come from a backend/API
   const [conversation, setConversation] = useState([
     { 
       role: 'bot', 
@@ -19,40 +22,100 @@ const ChatbotButton = () => {
     setIsOpen(!isOpen);
   };
   
-  const handleSendMessage = (e: React.FormEvent) => {
+  useEffect(() => {
+    // Scroll to bottom whenever messages change
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [conversation]);
+  
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!message.trim()) return;
     
     // Add user message to conversation
-    setConversation([
+    const updatedConversation = [
       ...conversation,
       { role: 'user', content: message }
-    ]);
+    ];
+    
+    setConversation(updatedConversation);
     
     // Clear input
     setMessage('');
+    setIsAiThinking(true);
     
-    // Simulate AI response (in a real app, this would be an API call)
-    setTimeout(() => {
-      let botResponse;
+    try {
+      // Prepare conversation history for AI context
+      const aiContext = updatedConversation.map(msg => ({
+        role: msg.role === 'bot' ? 'assistant' : 'user',
+        content: msg.content
+      }));
+      
+      // Add system message to guide AI responses
+      const systemMessage = {
+        role: 'system',
+        content: 'You are an AI real estate assistant. You help users find properties, understand market trends, and provide information about real estate investing. Be professional, knowledgeable, and helpful. Provide specific information about luxury properties when possible. Your responses should be concise but informative.'
+      };
+      
+      // Make request to OpenAI API
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${import.meta.env.VITE_OPENAI_API_KEY || ''}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4o-mini',
+          messages: [systemMessage, ...aiContext],
+          temperature: 0.7,
+          max_tokens: 300
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+      
+      const data = await response.json();
+      const aiResponse = data.choices[0]?.message?.content || 'Sorry, I couldn\'t process your request.';
+      
+      // Add AI response to conversation
+      setConversation([
+        ...updatedConversation,
+        { role: 'bot', content: aiResponse }
+      ]);
+    } catch (error) {
+      console.error('Error getting AI response:', error);
+      
+      // Fallback response if API fails
+      toast({
+        title: "AI Service Error",
+        description: "Couldn't connect to the AI service. Using fallback responses.",
+        variant: "destructive"
+      });
+      
+      // Provide fallback response based on keywords
+      let fallbackResponse;
       
       if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
-        botResponse = "Property prices vary based on location, size, and amenities. Our luxury homes typically range from $1M to $10M. Would you like me to show you properties in a specific price range?";
+        fallbackResponse = "Property prices vary based on location, size, and amenities. Our luxury homes typically range from $1M to $10M. Would you like me to show you properties in a specific price range?";
       } else if (message.toLowerCase().includes('location') || message.toLowerCase().includes('area')) {
-        botResponse = "We have luxury properties in various prime locations. Popular areas include Beverly Hills, Malibu, Manhattan, and Miami Beach. Which area are you most interested in?";
+        fallbackResponse = "We have luxury properties in various prime locations. Popular areas include Beverly Hills, Malibu, Manhattan, and Miami Beach. Which area are you most interested in?";
       } else if (message.toLowerCase().includes('recommend') || message.toLowerCase().includes('suggestion')) {
-        botResponse = "Based on current market trends, properties in Downtown areas are showing excellent investment potential with 8.3% annual appreciation. Would you like to see some recommendations?";
+        fallbackResponse = "Based on current market trends, properties in Downtown areas are showing excellent investment potential with 8.3% annual appreciation. Would you like to see some recommendations?";
       } else {
-        botResponse = "I'd be happy to help with that. To provide the best assistance, could you tell me more about your property preferences like location, budget, or specific features you're looking for?";
+        fallbackResponse = "I'd be happy to help with that. To provide the best assistance, could you tell me more about your property preferences like location, budget, or specific features you're looking for?";
       }
       
       setConversation([
-        ...conversation,
-        { role: 'user', content: message },
-        { role: 'bot', content: botResponse }
+        ...updatedConversation,
+        { role: 'bot', content: fallbackResponse }
       ]);
-    }, 1000);
+    } finally {
+      setIsAiThinking(false);
+    }
   };
   
   return (
@@ -104,6 +167,17 @@ const ChatbotButton = () => {
                 </div>
               </div>
             ))}
+            
+            {isAiThinking && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-800 rounded-lg rounded-bl-none max-w-[80%] p-3 flex items-center">
+                  <Loader2 size={16} className="animate-spin mr-2" />
+                  <span>Thinking...</span>
+                </div>
+              </div>
+            )}
+            
+            <div ref={messagesEndRef} />
           </div>
           
           {/* Input */}
@@ -115,17 +189,21 @@ const ChatbotButton = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 className="flex-1 border border-gray-300 rounded-l-md py-2 px-4 focus:outline-none focus:ring-2 focus:ring-navy/50"
                 placeholder="Type your message..."
+                disabled={isAiThinking}
               />
               <Button 
                 type="submit" 
                 variant="gold" 
                 className="rounded-l-none py-2"
-                icon={<Send size={18} />}
+                icon={isAiThinking ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                 aria-label="Send message"
+                disabled={isAiThinking || !message.trim()}
               />
             </div>
             <p className="text-xs text-gray-500 mt-2">
-              Powered by AI for instant answers to your real estate questions
+              {isAiThinking 
+                ? 'AI is generating a response...' 
+                : 'Powered by AI for instant answers to your real estate questions'}
             </p>
           </form>
         </div>
