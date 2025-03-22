@@ -1,0 +1,208 @@
+
+import React, { useState } from 'react';
+import { X, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import Button from '../shared/Button';
+
+interface AuthModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+  const [isLogin, setIsLogin] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    name: '',
+  });
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+  
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real app, this would handle authentication
+    console.log('Form submitted:', formData);
+    
+    // For demo purposes, just close the modal
+    onClose();
+  };
+  
+  const toggleAuthMode = () => {
+    setIsLogin(!isLogin);
+    // Reset form when switching between login and signup
+    setFormData({
+      email: '',
+      password: '',
+      name: '',
+    });
+  };
+  
+  if (!isOpen) return null;
+  
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+      <div className="w-full max-w-md glass-card relative animate-zoom-in">
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          aria-label="Close modal"
+        >
+          <X size={20} />
+        </button>
+        
+        <div className="p-8">
+          <h2 className="text-2xl font-serif font-semibold text-navy mb-6 text-center">
+            {isLogin ? 'Welcome Back' : 'Create Account'}
+          </h2>
+          
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {!isLogin && (
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                  Full Name
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <User className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-gold/50 focus:border-gold focus:outline-none"
+                    placeholder="John Doe"
+                  />
+                </div>
+              </div>
+            )}
+            
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                Email Address
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-gold/50 focus:border-gold focus:outline-none"
+                  placeholder="you@example.com"
+                />
+              </div>
+            </div>
+            
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                Password
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-gray-400" />
+                </div>
+                <input
+                  id="password"
+                  name="password"
+                  type={showPassword ? 'text' : 'password'}
+                  required
+                  value={formData.password}
+                  onChange={handleChange}
+                  className="block w-full pl-10 pr-10 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-gold/50 focus:border-gold focus:outline-none"
+                  placeholder={isLogin ? '••••••••' : 'Create password'}
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                  onClick={() => setShowPassword(!showPassword)}
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? (
+                    <EyeOff className="h-5 w-5 text-gray-400" />
+                  ) : (
+                    <Eye className="h-5 w-5 text-gray-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+            
+            {isLogin && (
+              <div className="flex items-center justify-end">
+                <button
+                  type="button"
+                  className="text-sm text-gold hover:text-gold-dark"
+                >
+                  Forgot password?
+                </button>
+              </div>
+            )}
+            
+            <Button
+              type="submit"
+              variant="gold"
+              className="w-full mt-6"
+            >
+              {isLogin ? 'Sign In' : 'Create Account'}
+            </Button>
+          </form>
+          
+          <div className="mt-6">
+            <div className="relative">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-300"></div>
+              </div>
+              <div className="relative flex justify-center text-sm">
+                <span className="px-2 bg-white text-gray-500">
+                  Or continue with
+                </span>
+              </div>
+            </div>
+            
+            <div className="mt-6 grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                className="py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              >
+                Google
+              </button>
+              <button
+                type="button"
+                className="py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gold/50"
+              >
+                Apple
+              </button>
+            </div>
+          </div>
+          
+          <div className="mt-6 text-center text-sm">
+            <span className="text-gray-600">
+              {isLogin ? "Don't have an account?" : "Already have an account?"}
+            </span>
+            <button
+              type="button"
+              onClick={toggleAuthMode}
+              className="ml-1 text-gold hover:text-gold-dark font-medium"
+            >
+              {isLogin ? 'Sign up' : 'Sign in'}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AuthModal;
