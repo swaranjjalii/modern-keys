@@ -3,33 +3,6 @@ import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import AuthModal from '../components/auth/AuthModal';
 
-const featured = [
-  {
-    title: 'Modern Villa in Andheri',
-    location: 'Andheri West, Mumbai',
-    price: '₹3.7 Cr',
-    image:
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop',
-    highlights: ['5 Beds', '6 Baths', '5200 sqft', 'Luxury', 'New'],
-  },
-  {
-    title: 'Premium Apartment',
-    location: 'Koregaon Park, Pune',
-    price: '₹2.5 Cr',
-    image:
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop',
-    highlights: ['3 Beds', '3 Baths', '1800 sqft', 'Furnished'],
-  },
-  {
-    title: 'Lakeview Mansion',
-    location: 'Gangapur Road, Nashik',
-    price: '₹1.8 Cr',
-    image:
-      'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=800&auto=format&fit=crop',
-    highlights: ['4 Beds', '3 Baths', '3000 sqft', 'Scenic'],
-  },
-];
-
 const testimonials = [
   {
     name: 'Amit S.',
@@ -86,31 +59,29 @@ const Index = () => {
         <section className="py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h2 className="text-3xl font-bold text-navy mb-8 text-center">Featured Properties</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featured.map((prop, idx) => (
-                <div key={idx} className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all group">
-                  <img
-                    src={prop.image}
-                    alt={prop.title}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-navy mb-1">{prop.title}</h3>
-                    <div className="text-gray-500 mb-2">{prop.location}</div>
-                    <div className="text-gold font-bold text-lg mb-2">{prop.price}</div>
-                    <div className="flex flex-wrap gap-2 mb-2">
-                      {prop.highlights.map((h, i) => (
-                        <span key={i} className="bg-navy/10 text-navy px-3 py-1 rounded-full text-xs font-medium">
-                          {h}
-                        </span>
-                      ))}
-                    </div>
-                    <a href="/properties" className="inline-block mt-2 text-gold hover:underline font-semibold">
-                      View Details
-                    </a>
-                  </div>
-                </div>
-              ))}
+            {/* Property Type Sections */}
+            <div className="flex flex-wrap justify-center gap-6 mb-10">
+              <div className="bg-white rounded-xl shadow-md p-6 w-64 flex flex-col items-center hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=800&auto=format&fit=crop" alt="Apartment" className="w-20 h-20 object-cover rounded-full mb-3" />
+                <h3 className="text-lg font-semibold text-navy mb-1">Apartments</h3>
+                <p className="text-gray-600 text-center">
+                  Modern, urban living spaces with amenities and security. Ideal for city dwellers and families.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl shadow-md p-6 w-64 flex flex-col items-center hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" alt="Villa" className="w-20 h-20 object-cover rounded-full mb-3" />
+                <h3 className="text-lg font-semibold text-navy mb-1">Villas</h3>
+                <p className="text-gray-600 text-center">
+                  Spacious, luxurious homes with private gardens and premium features. Perfect for upscale living.
+                </p>
+              </div>
+              <div className="bg-white rounded-xl shadow-md p-6 w-64 flex flex-col items-center hover:shadow-xl transition-all">
+                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=800&auto=format&fit=crop" alt="Mansion" className="w-20 h-20 object-cover rounded-full mb-3" />
+                <h3 className="text-lg font-semibold text-navy mb-1">Mansions</h3>
+                <p className="text-gray-600 text-center">
+                  Grand estates with expansive grounds, top-tier amenities, and unmatched privacy for elite lifestyles.
+                </p>
+              </div>
             </div>
           </div>
         </section>
