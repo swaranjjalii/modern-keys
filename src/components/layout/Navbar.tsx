@@ -1,12 +1,13 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, Search } from 'lucide-react';
 import Button from '../shared/Button';
+import AuthModal from '../auth/AuthModal';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
@@ -75,7 +76,8 @@ const Navbar = () => {
           <Button 
             variant="gold" 
             className="ml-3 animate-fade-in" 
-            icon={<User size={18} />}
+            icon={<User size={18} />} 
+            onClick={() => setAuthOpen(true)}
           >
             Sign In
           </Button>
@@ -120,7 +122,8 @@ const Navbar = () => {
               <Button 
                 variant="gold" 
                 className="w-full justify-start" 
-                icon={<User size={18} />}
+                icon={<User size={18} />} 
+                onClick={() => setAuthOpen(true)}
               >
                 Sign In
               </Button>
@@ -128,6 +131,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
+      <AuthModal isOpen={authOpen} onClose={() => setAuthOpen(false)} />
     </nav>
   );
 };

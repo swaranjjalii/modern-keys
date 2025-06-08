@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Heart, MapPin, Bed, Bath, Square, ArrowRight } from 'lucide-react';
 import Badge from '../shared/Badge';
@@ -73,7 +72,7 @@ const PropertyCard = ({
           {/* Price */}
           <div className="flex justify-between items-start mb-2">
             <h3 className="text-xl font-semibold text-navy font-serif">
-              ${price.toLocaleString()}
+              ₹{price.toLocaleString()}
             </h3>
             
             {/* Tags */}

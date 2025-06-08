@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
 import ChatbotButton from '../components/home/ChatbotButton';
@@ -7,6 +6,34 @@ import Button from '../components/shared/Button';
 import { BarChart2, LineChart, TrendingUp, Download, Users, Globe, Clock, ArrowRight } from 'lucide-react';
 
 const Insights = () => {
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState<string | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setFeedback(null);
+    try {
+      const res = await fetch('http://localhost:8502/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setFeedback('Subscribed successfully!');
+        setEmail('');
+      } else {
+        setFeedback(data.message || 'Subscription failed.');
+      }
+    } catch (err) {
+      setFeedback('Error subscribing.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -133,15 +160,24 @@ const Insights = () => {
                 Subscribe to receive AI-generated market reports tailored to your investment criteria and property preferences
               </p>
               <div className="flex flex-col sm:flex-row gap-2 max-w-lg mx-auto">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="flex-grow px-4 py-2 rounded-md border border-white/20 bg-white/10 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold/50"
-                />
-                <Button variant="gold">
-                  Subscribe
-                </Button>
+                <form onSubmit={handleSubscribe} className="flex w-full gap-2">
+                  <input
+                    type="email"
+                    placeholder="Your email address"
+                    className="flex-grow px-4 py-2 rounded-md border border-white/20 bg-white/10 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-gold/50"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    required
+                    disabled={loading}
+                  />
+                  <Button variant="gold" type="submit" disabled={loading || !email}>
+                    {loading ? 'Subscribing...' : 'Subscribe'}
+                  </Button>
+                </form>
               </div>
+              {feedback && (
+                <div className="text-gold mt-2 text-sm">{feedback}</div>
+              )}
               <p className="text-white/60 text-sm mt-4">
                 We'll send you weekly insights and never share your information
               </p>

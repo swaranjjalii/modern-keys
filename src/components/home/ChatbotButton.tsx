@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { MessageSquare, X, Send, Sparkles } from 'lucide-react';
+import { MessageSquare, X, Send, Sparkles, Loader2 } from 'lucide-react';
 import Button from '../shared/Button';
 
 const ChatbotButton = () => {
@@ -15,44 +14,51 @@ const ChatbotButton = () => {
     }
   ]);
   
+  const [isAiThinking, setIsAiThinking] = useState(false);
+  
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
   
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!message.trim()) return;
     
-    // Add user message to conversation
-    setConversation([
+    const updatedConversation = [
       ...conversation,
       { role: 'user', content: message }
-    ]);
+    ];
     
-    // Clear input
+    setConversation(updatedConversation);
     setMessage('');
+    setIsAiThinking(true);
     
-    // Simulate AI response (in a real app, this would be an API call)
-    setTimeout(() => {
-      let botResponse;
+    try {
+      // Send the user message to the backend chat endpoint
+      const response = await fetch('/api/ai-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message })
+      });
       
-      if (message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
-        botResponse = "Property prices vary based on location, size, and amenities. Our luxury homes typically range from $1M to $10M. Would you like me to show you properties in a specific price range?";
-      } else if (message.toLowerCase().includes('location') || message.toLowerCase().includes('area')) {
-        botResponse = "We have luxury properties in various prime locations. Popular areas include Beverly Hills, Malibu, Manhattan, and Miami Beach. Which area are you most interested in?";
-      } else if (message.toLowerCase().includes('recommend') || message.toLowerCase().includes('suggestion')) {
-        botResponse = "Based on current market trends, properties in Downtown areas are showing excellent investment potential with 8.3% annual appreciation. Would you like to see some recommendations?";
-      } else {
-        botResponse = "I'd be happy to help with that. To provide the best assistance, could you tell me more about your property preferences like location, budget, or specific features you're looking for?";
-      }
+      if (!response.ok) throw new Error('Failed to get AI response');
+      
+      const data = await response.json();
+      const aiResponse = data.result || 'Sorry, I couldn\'t process your request.';
       
       setConversation([
-        ...conversation,
-        { role: 'user', content: message },
-        { role: 'bot', content: botResponse }
+        ...updatedConversation,
+        { role: 'bot', content: aiResponse }
       ]);
-    }, 1000);
+    } catch (error) {
+      setConversation([
+        ...updatedConversation,
+        { role: 'bot', content: 'Sorry, I couldn\'t process your request.' }
+      ]);
+    } finally {
+      setIsAiThinking(false);
+    }
   };
   
   return (
@@ -104,6 +110,13 @@ const ChatbotButton = () => {
                 </div>
               </div>
             ))}
+            {isAiThinking && (
+              <div className="flex justify-start">
+                <div className="max-w-[80%] p-3 rounded-lg bg-gray-100 text-gray-800 rounded-bl-none">
+                  Thinking...
+                </div>
+              </div>
+            )}
           </div>
           
           {/* Input */}
@@ -120,9 +133,13 @@ const ChatbotButton = () => {
                 type="submit" 
                 variant="gold" 
                 className="rounded-l-none py-2"
-                icon={<Send size={18} />}
+                icon={isAiThinking ? <Loader2 size={18} className="animate-spin" /> : <Send size={18} />}
                 aria-label="Send message"
-              />
+                disabled={isAiThinking || !message.trim()}
+              >
+                {/* children required by ButtonProps, but we only want the icon */}
+                ""
+              </Button>
             </div>
             <p className="text-xs text-gray-500 mt-2">
               Powered by AI for instant answers to your real estate questions

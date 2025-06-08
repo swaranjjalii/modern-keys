@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Navbar from '../components/layout/Navbar';
 import Footer from '../components/layout/Footer';
@@ -6,88 +5,10 @@ import PropertyCard from '../components/home/PropertyCard';
 import ChatbotButton from '../components/home/ChatbotButton';
 import Button from '../components/shared/Button';
 import { Filter, Search, Sliders, Grid, List, ArrowDown } from 'lucide-react';
+import { properties } from '../data/properties';
 
 const Properties = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  
-  // This would come from an API in a real application
-  const properties = [
-    {
-      id: '1',
-      title: 'Modern Luxury Villa',
-      address: 'Beverly Hills, CA 90210',
-      price: 4500000,
-      bedrooms: 5,
-      bathrooms: 6,
-      area: 5200,
-      image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop',
-      tags: ['Luxury', 'New'],
-      featured: true,
-      aiMatch: 92
-    },
-    {
-      id: '2',
-      title: 'Oceanfront Penthouse',
-      address: 'Malibu, CA 90265',
-      price: 6200000,
-      bedrooms: 4,
-      bathrooms: 4.5,
-      area: 3800,
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop',
-      tags: ['Penthouse', 'Ocean View'],
-      featured: true,
-      aiMatch: 88
-    },
-    {
-      id: '3',
-      title: 'City Center Apartment',
-      address: 'Manhattan, NY 10022',
-      price: 2800000,
-      bedrooms: 3,
-      bathrooms: 2,
-      area: 2200,
-      image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop',
-      tags: ['Central', 'Views'],
-      featured: true,
-      aiMatch: 95
-    },
-    {
-      id: '4',
-      title: 'Historic Brownstone',
-      address: 'Brooklyn, NY 11201',
-      price: 3500000,
-      bedrooms: 4,
-      bathrooms: 3.5,
-      area: 3100,
-      image: 'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2070&auto=format&fit=crop',
-      tags: ['Historic', 'Renovated'],
-      aiMatch: 82
-    },
-    {
-      id: '5',
-      title: 'Lakefront Estate',
-      address: 'Lake Tahoe, CA 96150',
-      price: 7800000,
-      bedrooms: 6,
-      bathrooms: 7,
-      area: 6500,
-      image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2074&auto=format&fit=crop',
-      tags: ['Waterfront', 'Estate'],
-      aiMatch: 87
-    },
-    {
-      id: '6',
-      title: 'Downtown Loft',
-      address: 'San Francisco, CA 94105',
-      price: 1950000,
-      bedrooms: 2,
-      bathrooms: 2,
-      area: 1800,
-      image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2070&auto=format&fit=crop',
-      tags: ['Loft', 'City'],
-      aiMatch: 91
-    },
-  ];
   
   return (
     <div className="min-h-screen flex flex-col">
@@ -159,7 +80,7 @@ const Properties = () => {
               
               <div>
                 <Button 
-                  variant="navy" 
+                  variant="primary" 
                   className="w-full"
                   icon={<Filter size={18} />}
                 >
@@ -172,11 +93,9 @@ const Properties = () => {
           {/* Property grid */}
           <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'} gap-8`}>
             {properties.map((property, index) => (
-              <PropertyCard
-                key={property.id}
-                {...property}
-                style={{ animationDelay: `${index * 100}ms` }}
-              />
+              <div key={property.id} style={{ animationDelay: `${index * 100}ms` }}>
+                <PropertyCard {...property} />
+              </div>
             ))}
           </div>
           

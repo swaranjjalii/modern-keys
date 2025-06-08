@@ -1,11 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { Search, MapPin, Home, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../shared/Button';
 
 const Hero = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [bgIndex, setBgIndex] = useState(0);
+  const navigate = useNavigate();
   
   const backgroundImages = [
     '/images/luxury-home.jpg',
@@ -26,6 +27,18 @@ const Hero = () => {
   const heroStyle = {
     '--bg-image': `url(https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop)`,
   } as React.CSSProperties;
+
+  const handleSearch = () => {
+    if (searchTerm.trim()) {
+      navigate(`/properties?search=${encodeURIComponent(searchTerm)}`);
+    } else {
+      navigate('/properties');
+    }
+  };
+
+  const handleTypeClick = (type: string) => {
+    navigate(`/properties?type=${encodeURIComponent(type)}`);
+  };
   
   return (
     <section 
@@ -53,9 +66,10 @@ const Hero = () => {
                   placeholder="Enter location, neighborhood, or building"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter') handleSearch(); }}
                 />
               </div>
-              <Button variant="gold" className="mt-2 md:mt-0">
+              <Button variant="gold" className="mt-2 md:mt-0" onClick={handleSearch}>
                 <Search className="h-5 w-5 mr-2" />
                 Search
               </Button>
@@ -67,6 +81,7 @@ const Hero = () => {
               variant="secondary" 
               className="bg-white/90 backdrop-blur-sm"
               icon={<Home size={18} />}
+              onClick={() => handleTypeClick('Luxury Homes')}
             >
               Luxury Homes
             </Button>
@@ -74,6 +89,7 @@ const Hero = () => {
               variant="secondary" 
               className="bg-white/90 backdrop-blur-sm"
               icon={<Home size={18} />}
+              onClick={() => handleTypeClick('Apartments')}
             >
               Apartments
             </Button>
@@ -81,6 +97,7 @@ const Hero = () => {
               variant="secondary" 
               className="bg-white/90 backdrop-blur-sm"
               icon={<Home size={18} />}
+              onClick={() => handleTypeClick('Penthouses')}
             >
               Penthouses
             </Button>

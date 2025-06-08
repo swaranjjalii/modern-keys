@@ -1,4 +1,3 @@
-
 import React from 'react';
 import PropertyCard from './PropertyCard';
 import Button from '../shared/Button';
@@ -49,6 +48,13 @@ const FeaturedProperties = () => {
     },
   ];
 
+  const handleScrollToSearch = () => {
+    const el = document.getElementById('search');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="section-padding bg-gray-50" id="featured-properties">
       <div className="container mx-auto px-4">
@@ -73,11 +79,11 @@ const FeaturedProperties = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property, index) => (
-            <PropertyCard
-              key={property.id}
-              {...property}
-              style={{ animationDelay: `${index * 100}ms` }}
-            />
+            <div key={property.id} style={{ animationDelay: `${index * 100}ms` }}>
+              <PropertyCard
+                {...property}
+              />
+            </div>
           ))}
         </div>
         
@@ -85,7 +91,7 @@ const FeaturedProperties = () => {
           <p className="text-gray-600 mb-6">
             Looking for something specific? Let our AI find your perfect match.
           </p>
-          <Button variant="gold">
+          <Button variant="gold" onClick={handleScrollToSearch}>
             Get Personalized Recommendations
           </Button>
         </div>
