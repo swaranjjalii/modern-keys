@@ -35,7 +35,7 @@ const Index = () => {
             <span className="text-gold">Dream Home</span>
           </h1>
           <p className="text-lg md:text-2xl text-white/90 mb-8 animate-fade-in" style={{ animationDelay: '100ms' }}>
-            Discover premium properties, luxury apartments, and investment opportunities across India.
+            Discover premium properties, luxury apartments, and investment opportunities across all the India.
           </p>
           <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
             <a
