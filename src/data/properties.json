@@ -624,6 +624,91 @@
                 "Private elevator",
                 "Infinity pool"
             ]
+        },
+        {
+            "property_id": "NAN001",
+            "city": "Nanded",
+            "locality": "Vishnupuri",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 900,
+            "price_inr": 3200000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Near university campus",
+                "Peaceful locality"
+            ]
+        },
+        {
+            "property_id": "NAN002",
+            "city": "Nanded",
+            "locality": "Taroda",
+            "property_type": "Independent House",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1800,
+            "plot_area_sqft": 2500,
+            "price_inr": 7500000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Spacious plot",
+                "Family-friendly area"
+            ]
+        },
+        {
+            "property_id": "NAN003",
+            "city": "Nanded",
+            "locality": "Shivaji Nagar",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 500,
+            "price_inr": 1800000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "New Launch",
+            "highlights": [
+                "Affordable housing",
+                "Developing infrastructure"
+            ]
+        },
+        {
+            "property_id": "NAN004",
+            "city": "Nanded",
+            "locality": "Airport Road",
+            "property_type": "Commercial Shop",
+            "area_sqft": 350,
+            "price_inr": 4200000,
+            "listing_type": "For Sale",
+            "furnishing": "Bare Shell",
+            "status": "Ready to Move",
+            "highlights": [
+                "Prime commercial area",
+                "Good footfall"
+            ]
+        },
+        {
+            "property_id": "NAN005",
+            "city": "Nanded",
+            "locality": "CIDCO",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 800,
+            "price_inr": 2700000,
+            "listing_type": "For Rent",
+            "rent_per_month_inr": 9000,
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Close to schools",
+                "Affordable rent"
+            ]
         }
     ]
 }
