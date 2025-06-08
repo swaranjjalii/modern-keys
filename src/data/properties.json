@@ -520,6 +520,110 @@
                 "Premium locality",
                 "Government offices nearby"
             ]
+        },
+        {
+            "property_id": "MUM009",
+            "city": "Mumbai",
+            "locality": "Juhu",
+            "property_type": "Penthouse",
+            "bedrooms": 5,
+            "bathrooms": 6,
+            "area_sqft": 6000,
+            "price_inr": 95000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Sea-facing terrace",
+                "Private pool",
+                "Luxury interiors"
+            ]
+        },
+        {
+            "property_id": "PUN009",
+            "city": "Pune",
+            "locality": "Kalyani Nagar",
+            "property_type": "Penthouse",
+            "bedrooms": 4,
+            "bathrooms": 5,
+            "area_sqft": 4200,
+            "price_inr": 42000000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Sky garden",
+                "City views",
+                "Modern amenities"
+            ]
+        },
+        {
+            "property_id": "NSK008",
+            "city": "Nashik",
+            "locality": "College Road",
+            "property_type": "Commercial",
+            "area_sqft": 2500,
+            "price_inr": 32000000,
+            "listing_type": "For Sale",
+            "furnishing": "Bare Shell",
+            "status": "Ready to Move",
+            "highlights": [
+                "Prime business location",
+                "High footfall",
+                "Parking available"
+            ]
+        },
+        {
+            "property_id": "NGP009",
+            "city": "Nagpur",
+            "locality": "Sitabuldi",
+            "property_type": "Commercial",
+            "area_sqft": 1800,
+            "price_inr": 21000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Central market",
+                "Office/retail flexibility",
+                "Good connectivity"
+            ]
+        },
+        {
+            "property_id": "PUN010",
+            "city": "Pune",
+            "locality": "Baner",
+            "property_type": "Villa",
+            "bedrooms": 5,
+            "bathrooms": 6,
+            "area_sqft": 4800,
+            "price_inr": 35000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Private garden",
+                "Gated community",
+                "Modern architecture"
+            ]
+        },
+        {
+            "property_id": "MUM010",
+            "city": "Mumbai",
+            "locality": "Malabar Hill",
+            "property_type": "Villa",
+            "bedrooms": 6,
+            "bathrooms": 7,
+            "area_sqft": 7000,
+            "price_inr": 120000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Sea view",
+                "Private elevator",
+                "Infinity pool"
+            ]
         }
     ]
 }
