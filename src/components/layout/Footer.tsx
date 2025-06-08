@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-react';
@@ -51,6 +50,9 @@ const Footer = () => {
               <li>
                 <Link to="/contact" className="text-gray-300 hover:text-gold transition-colors">Contact</Link>
               </li>
+              <li>
+                <Link to="/news" className="text-gray-300 hover:text-gold transition-colors">News</Link>
+              </li>
             </ul>
           </div>
 
@@ -82,15 +84,15 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={20} className="text-gold mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-300">123 Luxury Avenue, Prestige City, 10001</span>
+                <span className="text-gray-300">EliteEstate, 101 Koregaon Park, Pune, Maharashtra 411001, India</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="text-gold mr-3 flex-shrink-0" />
-                <span className="text-gray-300">+1 (800) 123-4567</span>
+                <span className="text-gray-300">8007103870</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="text-gold mr-3 flex-shrink-0" />
-                <span className="text-gray-300">info@eliteestate.com</span>
+                <span className="text-gray-300">swaranjalishahapure004@gmail.com</span>
               </li>
             </ul>
           </div>
