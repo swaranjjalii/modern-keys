@@ -1,0 +1,525 @@
+{
+    "last_updated": "2025-06-08T13:45:00Z",
+    "disclaimer": "This is a simulated dataset for illustrative purposes only and does not represent live market data. Property prices and availability are highly dynamic.",
+    "properties": [
+        {
+            "property_id": "MUM001",
+            "city": "Mumbai",
+            "locality": "Andheri West",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 850,
+            "price_inr": 18000000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Proximity to Metro",
+                "Good connectivity"
+            ]
+        },
+        {
+            "property_id": "MUM002",
+            "city": "Mumbai",
+            "locality": "Bandra West",
+            "property_type": "Apartment",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1500,
+            "price_inr": 45000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Premium locality",
+                "Sea view"
+            ]
+        },
+        {
+            "property_id": "MUM003",
+            "city": "Mumbai",
+            "locality": "Thane West",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 550,
+            "price_inr": 7500000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "New Launch",
+            "highlights": [
+                "Affordable",
+                "Upcoming infrastructure"
+            ]
+        },
+        {
+            "property_id": "MUM004",
+            "city": "Mumbai",
+            "locality": "Lower Parel",
+            "property_type": "Commercial Office Space",
+            "area_sqft": 1200,
+            "price_inr": 30000000,
+            "listing_type": "For Sale",
+            "furnishing": "Bare Shell",
+            "status": "Ready to Move",
+            "highlights": [
+                "Business hub",
+                "High rental yield potential"
+            ]
+        },
+        {
+            "property_id": "MUM005",
+            "city": "Mumbai",
+            "locality": "Mira Road",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 700,
+            "price_inr": 9000000,
+            "listing_type": "For Rent",
+            "rent_per_month_inr": 28000,
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Family-friendly",
+                "Good amenities"
+            ]
+        },
+        {
+            "property_id": "MUM006",
+            "city": "Mumbai",
+            "locality": "Navi Mumbai (Panvel)",
+            "property_type": "Villa",
+            "bedrooms": 4,
+            "bathrooms": 4,
+            "area_sqft": 2500,
+            "price_inr": 28000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Under Construction",
+            "highlights": [
+                "Near upcoming airport",
+                "Spacious living"
+            ]
+        },
+        {
+            "property_id": "MUM007",
+            "city": "Mumbai",
+            "locality": "Kandivali East",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 450,
+            "price_inr": 6500000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Compact and affordable",
+                "Close to railway station"
+            ]
+        },
+        {
+            "property_id": "PUN001",
+            "city": "Pune",
+            "locality": "Hinjawadi",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 900,
+            "price_inr": 7200000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "IT hub proximity",
+                "High rental demand"
+            ]
+        },
+        {
+            "property_id": "PUN002",
+            "city": "Pune",
+            "locality": "Koregaon Park",
+            "property_type": "Apartment",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1800,
+            "price_inr": 25000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Premium location",
+                "Luxurious amenities"
+            ]
+        },
+        {
+            "property_id": "PUN003",
+            "city": "Pune",
+            "locality": "Wagholi",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 600,
+            "price_inr": 3800000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "New Launch",
+            "highlights": [
+                "Affordable entry point",
+                "Developing area"
+            ]
+        },
+        {
+            "property_id": "PUN004",
+            "city": "Pune",
+            "locality": "Baner",
+            "property_type": "Office Space",
+            "area_sqft": 1500,
+            "price_inr": 18000000,
+            "listing_type": "For Rent",
+            "rent_per_month_inr": 75000,
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Commercial hub",
+                "Modern design"
+            ]
+        },
+        {
+            "property_id": "PUN005",
+            "city": "Pune",
+            "locality": "Kharadi",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 1000,
+            "price_inr": 8500000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Close to EON IT Park",
+                "Good community living"
+            ]
+        },
+        {
+            "property_id": "PUN006",
+            "city": "Pune",
+            "locality": "Undri",
+            "property_type": "Row House",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1600,
+            "price_inr": 12000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Under Construction",
+            "highlights": [
+                "Spacious layout",
+                "Peaceful surroundings"
+            ]
+        },
+        {
+            "property_id": "PUN007",
+            "city": "Pune",
+            "locality": "Pimpri-Chinchwad",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 800,
+            "price_inr": 6000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Industrial belt",
+                "Affordable living"
+            ]
+        },
+        {
+            "property_id": "NSK001",
+            "city": "Nashik",
+            "locality": "Gangapur Road",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 950,
+            "price_inr": 5800000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Prime residential area",
+                "Good amenities"
+            ]
+        },
+        {
+            "property_id": "NSK002",
+            "city": "Nashik",
+            "locality": "Indira Nagar",
+            "property_type": "Apartment",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1300,
+            "price_inr": 8500000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "New Launch",
+            "highlights": [
+                "Developing hub",
+                "Spacious flats"
+            ]
+        },
+        {
+            "property_id": "NSK003",
+            "city": "Nashik",
+            "locality": "Pathardi Phata",
+            "property_type": "Residential Plot",
+            "plot_area_sqft": 1500,
+            "price_inr": 3500000,
+            "listing_type": "For Sale",
+            "status": "Ready to Develop",
+            "highlights": [
+                "Investment opportunity",
+                "Connectivity to highway"
+            ]
+        },
+        {
+            "property_id": "NSK004",
+            "city": "Nashik",
+            "locality": "College Road",
+            "property_type": "Commercial Shop",
+            "area_sqft": 400,
+            "price_inr": 12000000,
+            "listing_type": "For Sale",
+            "furnishing": "Bare Shell",
+            "status": "Ready to Move",
+            "highlights": [
+                "High footfall area",
+                "Good for retail"
+            ]
+        },
+        {
+            "property_id": "NSK005",
+            "city": "Nashik",
+            "locality": "Adgaon",
+            "property_type": "Farmhouse",
+            "bedrooms": 4,
+            "bathrooms": 3,
+            "area_sqft": 3000,
+            "plot_area_sqft": 10000,
+            "price_inr": 18000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Scenic location",
+                "Leisure property"
+            ]
+        },
+        {
+            "property_id": "NSK006",
+            "city": "Nashik",
+            "locality": "Satpur",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 500,
+            "price_inr": 2800000,
+            "listing_type": "For Rent",
+            "rent_per_month_inr": 9000,
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Industrial area",
+                "Affordable rent"
+            ]
+        },
+        {
+            "property_id": "NGP001",
+            "city": "Nagpur",
+            "locality": "MIHAN",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 1000,
+            "price_inr": 4800000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Proximity to IT/SEZ",
+                "Investment hotspot"
+            ]
+        },
+        {
+            "property_id": "NGP002",
+            "city": "Nagpur",
+            "locality": "Wardha Road",
+            "property_type": "Apartment",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1400,
+            "price_inr": 7000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "New Launch",
+            "highlights": [
+                "Well-connected",
+                "Developing residential corridor"
+            ]
+        },
+        {
+            "property_id": "NGP003",
+            "city": "Nagpur",
+            "locality": "Manish Nagar",
+            "property_type": "Independent House",
+            "bedrooms": 4,
+            "bathrooms": 3,
+            "area_sqft": 2000,
+            "plot_area_sqft": 2500,
+            "price_inr": 15000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Established residential area",
+                "Spacious living"
+            ]
+        },
+        {
+            "property_id": "NGP004",
+            "city": "Nagpur",
+            "locality": "Medical Square",
+            "property_type": "Clinic Space",
+            "area_sqft": 700,
+            "price_inr": 9000000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Close to hospitals",
+                "High demand for medical facilities"
+            ]
+        },
+        {
+            "property_id": "NGP005",
+            "city": "Nagpur",
+            "locality": "Hingna Road",
+            "property_type": "Apartment",
+            "bedrooms": 1,
+            "bathrooms": 1,
+            "area_sqft": 600,
+            "price_inr": 3000000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Affordable for first-time buyers",
+                "Industrial connectivity"
+            ]
+        },
+        {
+            "property_id": "NGP006",
+            "city": "Nagpur",
+            "locality": "Dharampeth",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 1100,
+            "price_inr": 9500000,
+            "listing_type": "For Rent",
+            "rent_per_month_inr": 35000,
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Premium locality",
+                "City center access"
+            ]
+        },
+        {
+            "property_id": "NGP007",
+            "city": "Nagpur",
+            "locality": "Besa",
+            "property_type": "Residential Plot",
+            "plot_area_sqft": 1200,
+            "price_inr": 2500000,
+            "listing_type": "For Sale",
+            "status": "Ready to Develop",
+            "highlights": [
+                "Growing area",
+                "Good for independent house construction"
+            ]
+        },
+        {
+            "property_id": "MUM008",
+            "city": "Mumbai",
+            "locality": "Chembur",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 950,
+            "price_inr": 22000000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Well-established locality",
+                "Excellent connectivity"
+            ]
+        },
+        {
+            "property_id": "PUN008",
+            "city": "Pune",
+            "locality": "NIBM Road",
+            "property_type": "Apartment",
+            "bedrooms": 3,
+            "bathrooms": 3,
+            "area_sqft": 1600,
+            "price_inr": 16000000,
+            "listing_type": "For Sale",
+            "furnishing": "Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Upscale area",
+                "Green surroundings"
+            ]
+        },
+        {
+            "property_id": "NSK007",
+            "city": "Nashik",
+            "locality": "Panchavati",
+            "property_type": "Apartment",
+            "bedrooms": 2,
+            "bathrooms": 2,
+            "area_sqft": 800,
+            "price_inr": 4500000,
+            "listing_type": "For Sale",
+            "furnishing": "Unfurnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Cultural hub",
+                "Good local market access"
+            ]
+        },
+        {
+            "property_id": "NGP008",
+            "city": "Nagpur",
+            "locality": "Civil Lines",
+            "property_type": "Apartment",
+            "bedrooms": 4,
+            "bathrooms": 4,
+            "area_sqft": 2200,
+            "price_inr": 18000000,
+            "listing_type": "For Sale",
+            "furnishing": "Semi-Furnished",
+            "status": "Ready to Move",
+            "highlights": [
+                "Premium locality",
+                "Government offices nearby"
+            ]
+        }
+    ]
+}

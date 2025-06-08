@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { X, User, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import Button from '../shared/Button';
+import { useAuth } from './AuthContext';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -9,29 +9,37 @@ interface AuthModalProps {
 }
 
 const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
+  const { signIn, signUp } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
-  
+  const [error, setError] = useState<string | null>(null);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
     name: '',
   });
-  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-  
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would handle authentication
-    console.log('Form submitted:', formData);
-    
-    // For demo purposes, just close the modal
-    onClose();
+    setError(null);
+    try {
+      if (isLogin) {
+        await signIn(formData.email, formData.password);
+      } else {
+        await signUp(formData.name, formData.email, formData.password);
+      }
+      onClose();
+    } catch (err: any) {
+      setError(err.message || 'Authentication failed');
+    }
   };
-  
+
   const toggleAuthMode = () => {
     setIsLogin(!isLogin);
     // Reset form when switching between login and signup
@@ -41,9 +49,9 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
       name: '',
     });
   };
-  
+
   if (!isOpen) return null;
-  
+
   return (
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
       <div className="w-full max-w-md glass-card relative animate-zoom-in">
@@ -55,13 +63,19 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
         >
           <X size={20} />
         </button>
-        
+
         <div className="p-8">
           <h2 className="text-2xl font-serif font-semibold text-navy mb-6 text-center">
             {isLogin ? 'Welcome Back' : 'Create Account'}
           </h2>
-          
+
           <form onSubmit={handleSubmit} className="space-y-4">
+            {error && (
+              <div className="bg-red-100 text-red-700 rounded px-3 py-2 text-sm mb-2 border border-red-200 animate-fade-in">
+                {error}
+              </div>
+            )}
+
             {!isLogin && (
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
@@ -84,7 +98,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 </div>
               </div>
             )}
-            
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                 Email Address
@@ -105,7 +119,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 />
               </div>
             </div>
-            
+
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
                 Password
@@ -138,7 +152,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 </button>
               </div>
             </div>
-            
+
             {isLogin && (
               <div className="flex items-center justify-end">
                 <button
@@ -149,7 +163,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
                 </button>
               </div>
             )}
-            
+
             <Button
               type="submit"
               variant="gold"
@@ -158,35 +172,9 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
               {isLogin ? 'Sign In' : 'Create Account'}
             </Button>
           </form>
-          
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">
-                  Or continue with
-                </span>
-              </div>
-            </div>
-            
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gold/50"
-              >
-                Google
-              </button>
-              <button
-                type="button"
-                className="py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gold/50"
-              >
-                Apple
-              </button>
-            </div>
-          </div>
-          
+
+
+
           <div className="mt-6 text-center text-sm">
             <span className="text-gray-600">
               {isLogin ? "Don't have an account?" : "Already have an account?"}
